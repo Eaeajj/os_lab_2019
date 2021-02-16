@@ -1,0 +1,5 @@
+touch 11.txt
+rm 11.txt > /dev/null
+
+od -vAn -N150 -tu1 < /dev/random > numbers.
+
