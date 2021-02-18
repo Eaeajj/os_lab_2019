@@ -1,6 +1,11 @@
 touch 11.txt
 rm 11.txt > /dev/null
 
-od -vAn -N150 -tu1 < /dev/random > numbers.txt
-
+od -An -N150 -tu1 < /dev/random > numbers.txt
+    параметры:
+    1-ый -информация о смещении
+    2-ой -кол-во байт      
+    3-ий выбрать формат (u1 - десятичные 1-байтовые единицы)
+        можно было выбрать (td1 для отрицательных в том числе) 
+    
 ./average.sh $(cat numbers.txt)
