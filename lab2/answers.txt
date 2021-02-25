@@ -1,0 +1,89 @@
+---------------------------------2 number------------------------------
+				What is a Stack?
+A stack is a special area of computer's memory which stores temporary variables created by a function. In stack, variables are declared, stored and initialized during runtime.
+It is a temporary storage memory. When the computing task is complete, the memory of the variable will be automatically erased. The stack section mostly contains methods, local variable, and reference variables.
+
+				What is Heap?
+The heap is a memory used by programming languages to store global variables. By default, all global variable are stored in heap memory space. It supports Dynamic memory allocation.
+The heap is not managed automatically for you and is not as tightly managed by the CPU. It is more like a free-floating region of memory.
+
+				KEY DIFFERENCE
+1) Stack is a linear data structure whereas Heap is a hierarchical data structure.
+2) Stack memory will never become fragmented whereas Heap memory can become fragmented as blocks of memory are first allocated and then freed.
+3) Stack accesses local variables only while Heap allows you to access variables globally.
+4) Stack variables can’t be resized whereas Heap variables can be resized.
+5) Stack memory is allocated in a contiguous block whereas Heap memory is allocated in any random order.
+6) Stack doesn’t require to de-allocate variables whereas in Heap de-allocation is needed.
+7) Stack allocation and deallocation are done by compiler instructions whereas Heap allocation and deallocation is done by the programmer.
+
+-------------------------------3 number----------------------------------
+			Static & Dynamic linking
+Static Linking:
+When we click the .exe (executable) file of the program and it starts running, all the necessary contents of the binary file have been loaded into the process’s virtual address space. However, most programs also need to run functions from the system libraries, and these library functions also need to be loaded.
+
+In the simplest case, the necessary library functions are embedded directly in the program’s executable binary file. Such a program is statically linked to its libraries, and statically linked executable codes can commence running as soon as they are loaded.
+
+Disadvantage:
+Every program generated must contain copies of exactly the same common system library functions. In terms of both physical memory and disk-space usage, it is much more efficient to load the system libraries into memory only once. Dynamic linking allows this single loading to happen.
+
+Dynamic Linking:
+Every dynamically linked program contains a small, statically linked function that is called when the program starts. This static function only maps the link library into memory and runs the code that the function contains. The link library determines what are all the dynamic libraries which the program requires along with the names of the variables and functions needed from those libraries by reading the information contained in sections of the library.
+
+After which it maps the libraries into the middle of virtual memory and resolves the references to the symbols contained in those libraries. We don’t know where in the memory these shared libraries are actually mapped: They are compiled into position-independent code (PIC), that can run at any address in memory.
+
+Advantage:
+Memory requirements of the program are reduced. A DLL is loaded into memory only once, whereas more than one application may use a single DLL at the moment, thus saving memory space. Application support and maintenance costs are also lowered.
+
+			Compiler options
+-o file
+           Place output in file file.  This applies to whatever sort of output
+           is being produced, whether it be an executable file, an object
+           file, an assembler file or preprocessed C code.
+
+-c  Compile or assemble the source files, but do not link.  The linking
+           stage simply is not done.  The ultimate output is in the form of an
+           object file for each source file.
+
+ Options for Directory Search
+       These options specify directories to search for header files, for
+       libraries and for parts of the compiler:
+
+       -I dir
+
+	Directories specified with -I options are scanned in left-to-
+               right order.
+
+ -l library
+           Search the library named library when linking.  (The second
+           alternative with the library as a separate argument is only for
+           POSIX compliance and is not recommended.)
+
+ -shared
+           Produce a shared object which can then be linked with other objects
+           to form an executable.  Not all systems support this option.  For
+           predictable results, you must also specify the same set of options
+           used for compilation (-fpic, -fPIC, or model suboptions) when you
+           specify this linker option.[1]
+
+if you specify -L more than once, the
+       directories are searched in the order specified.  Also, the placement
+       of the -l option is significant.
+
+  -fPIC - code generation flag
+           If supported for the target machine, emit position-independent
+           code, suitable for dynamic linking and avoiding any limit on the
+           size of the global offset table.  This option makes a difference on
+           AArch64, m68k, PowerPC and SPARC.
+====
+====				4 point
+====
+ar - create, modify, and extract from archives
+DESCRIPTION
+       The GNU ar program creates, modifies, and extracts from archives.  An
+       archive is a single file holding a collection of other files in a
+       structure that makes it possible to retrieve the original individual
+       files (called members of the archive).
+====
+====				5 point
+====
+LD_LIBRARY_PATH is a environment variable that lists directory where executable can search for linux shared library. It's also called the shared library search path

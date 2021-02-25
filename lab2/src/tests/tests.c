@@ -1,8 +1,8 @@
-#include <CUnit/Basic.h>
+#include <BCUnit/Basic.h>
 #include <stdio.h>
 #include <string.h>
 
-#include "revert_string.h"
+#include "../../src/revert_string/revert_string.h"
 
 void testRevertString(void) {
   char simple_string[] = "Hello";
@@ -26,7 +26,7 @@ void testRevertString(void) {
 int main() {
   CU_pSuite pSuite = NULL;
 
-  /* initialize the CUnit test registry */
+  /* initialize the BCUnit test registry */
   if (CUE_SUCCESS != CU_initialize_registry()) return CU_get_error();
 
   /* add a suite to the registry */
