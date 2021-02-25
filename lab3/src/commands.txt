@@ -1,0 +1,1 @@
+find_min_max.c find_min_max.h sequential_min_max.c utils.c utils.h -o run
