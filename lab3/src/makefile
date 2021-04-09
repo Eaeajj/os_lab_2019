@@ -23,4 +23,4 @@ clean_obj_files :
 	rm utils.o find_min_max.o sequential_min_max.o
 
 clean :
-	rm utils.o find_min_max.o sequential_min_max parallel_min_max exec sequential_min_max.o
+	rm utils.o find_min_max.o sequential_min_max parallel_min_max run_exec sequential_min_max.o 
