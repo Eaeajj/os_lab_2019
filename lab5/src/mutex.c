@@ -9,6 +9,8 @@
  * mutex.c
  *
  * Simple multi-threaded example with a mutex lock.
+ * Creates two threads. While doing different things, they
+ * both access and modify variables with global scope.
  */
 #include <errno.h>
 #include <pthread.h>
