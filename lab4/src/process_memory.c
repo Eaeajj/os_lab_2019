@@ -17,12 +17,19 @@ char *cptr = "This message is output by the function showit()\n"; /* Static */
 char buffer1[25];
 int showit(); /* Function prototype */
 
-main() {
+void main() {
   int i = 0; /* Automatic variable */
 
   /* Printing addressing information */
+
+  /*This is the first address past the end of the text segment*/
   printf("\nAddress etext: %8X \n", &etext);
+  
+  /*This is the first address past the end of the initialized data segment.*/
   printf("Address edata: %8X \n", &edata);
+  
+  // This is the first address past the end of the uninitialized data segment
+  // (also known as the BSS segment).
   printf("Address end  : %8X \n", &end);
 
   SHW_ADR("main", main);
