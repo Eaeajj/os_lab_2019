@@ -19,24 +19,26 @@ struct FactorialArgs {
   uint64_t mod;
 };
 
-uint64_t MultModulo(uint64_t a, uint64_t b, uint64_t mod) {
-  uint64_t result = 0;
-  a = a % mod;
-  while (b > 0) {
-    if (b % 2 == 1)
-      result = (result + a) % mod;
-    a = (a * 2) % mod;
-    b /= 2;
-  }
+// uint64_t MultModulo(uint64_t a, uint64_t b, uint64_t mod) {
+//   uint64_t result = 0;
+//   a = a % mod;
+//   while (b > 0) {
+//     if (b % 2 == 1)
+//       result = (result + a) % mod;
+//     a = (a * 2) % mod;
+//     b /= 2;
+//   }
 
-  return result % mod;
-}
+//   return result % mod;
+// }
 
 uint64_t Factorial(const struct FactorialArgs *args) {
   uint64_t ans = 1;
 
-  // TODO: your code here
-
+  for (uint64_t i = args->begin; i <= args->end; i++) // my code here
+    ans*= (i % args->mod);
+  printf("(%ld--%ld)! mod %ld = %ld\n", args->begin, args->end, args->mod, ans);
+  
   return ans;
 }
 
@@ -67,11 +69,17 @@ int main(int argc, char **argv) {
       switch (option_index) {
       case 0:
         port = atoi(optarg);
-        // TODO: your code here
+        if (port < 0 || port > 65535) {
+          printf("Oops, port is unavailable!");
+          return 1;
+        }
         break;
       case 1:
         tnum = atoi(optarg);
-        // TODO: your code here
+        if (tnum < 1){
+        printf("tnum is a positive number");
+        return 1;
+        }
         break;
       default:
         printf("Index %d is out of options\n", option_index);
@@ -145,7 +153,7 @@ int main(int argc, char **argv) {
         break;
       }
 
-      pthread_t threads[tnum];
+
 
       uint64_t begin = 0;
       uint64_t end = 0;
@@ -156,15 +164,28 @@ int main(int argc, char **argv) {
 
       fprintf(stdout, "Receive: %llu %llu %llu\n", begin, end, mod);
 
+      
+      uint64_t k = end - begin + 1;
+      if (tnum > k) tnum = k; // removing potentially useless threads
+
+      pthread_t threads[tnum];
       struct FactorialArgs args[tnum];
       for (uint32_t i = 0; i < tnum; i++) {
-        // TODO: parallel somehow
-        args[i].begin = 1;
-        args[i].end = 1;
+        args[i].begin = i*(k/tnum) + begin;
+        if (i != tnum - 1)
+          args[i].end = (i+1)*(k/tnum) + begin - 1;
+        else
+          args[i].end = k + begin - 1;
+
+        // args[i].begin = 1;
+        // args[i].end = 1;
         args[i].mod = mod;
 
-        if (pthread_create(&threads[i], NULL, ThreadFactorial,
-                           (void *)&args[i])) {
+        if (pthread_create(&threads[i],
+                           NULL,
+                           ThreadFactorial,
+                           (void *)&args[i])
+                           ) {
           printf("Error: pthread_create failed!\n");
           return 1;
         }
