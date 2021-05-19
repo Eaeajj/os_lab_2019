@@ -1,16 +1,15 @@
 CC=gcc
+CFLAGS=-I.
+all: MultModulo client server
 
+client : MultModulo.o MultModulo.h
+	$(CC) -o client MultModulo.c MultModulo.h client.c -pthread $(CFLAGS)
 
-all: client server clean
+server : MultModulo.o MultModulo.h
+	$(CC) -o server MultModulo.c MultModulo.h server.c -pthread $(CFLAGS)
 
-client : client.c utils.o
-	$(CC) $^ -o $@ -lpthread
+MultModulo : MultModulo.h
+	$(CC) -o MultModulo.o -c MultModulo.c
 
-server : server.c utils.o
-	$(CC) $^ -o $@ -lpthread
-
-libra.o : utils.h utils.c
-	$(CC) -c $^
-
-clean : utils.o
-	rm utils.o utils.h.gch
+clean :
+	rm -f client server MultModulo.o

@@ -1,7 +1,6 @@
-#include "utils.h"
 
-uint64_t MultModulo(uint64_t a, uint64_t b, uint64_t mod) {
-  uint64_t result = 0;
+unsigned long long int MultModulo(unsigned long long int a, unsigned long long int b, unsigned long long int mod) {
+  unsigned long long int result = 0;
   a = a % mod;
   while (b > 0) {
     if (b % 2 == 1)
